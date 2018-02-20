@@ -1,4 +1,4 @@
 class Song < ApplicationRecord
   belongs_to :playlist
-  validates :artist, :name,  present: true
+  validates :artist, :name,  presence: true
 end

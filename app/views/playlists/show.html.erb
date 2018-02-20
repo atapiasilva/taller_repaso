@@ -10,5 +10,23 @@
   <%= @playlist.user.name %>
 </p>
 
+<%= form_with model: [@playlist, Song.new], local: true do |f| %>
+  <%= f.label :'nombre cancion' %>
+  <%= f.text_field :name, id: :song_name %>
+
+  <%= f.label :'nombre artista'%>
+  <%= f.text_field :artist, id: :song_artist %>
+
+  <%=f.submit 'Crear canción'%>
+
+<% end %>
 <%= link_to 'Edit', edit_playlist_path(@playlist) %> |
 <%= link_to 'Back', playlists_path %>
+
+<ul>
+<% @playlist.songs.each do |song| %>
+  <li>
+    <%= song.name %> <%= link_to 'Eliminar cancion' , playlist_song_path(@playlist, song), method: :delete %>
+  </li>
+<% end %>
+</ul>
